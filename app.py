@@ -1,20 +1,15 @@
 from flask import Flask, render_template
 
+from database import load_projects_from_db
+
 app = Flask(__name__)
-project = [
-  {'id':1,
-  'project' : 'web scrapping',
- 'skills' : 'urllib python,python requests,selenium'},
-  {'id':2,
-    'project' : 'Ai model for flear',
-   'skills' : 'python pandas , matbolotlip,microsoft azure,pychapgpt'}  
-]
+
 
 
 @app.route("/")
 def hello_world():
-  return render_template("home.html", myskills = project,
-                        myname = 'Huda AlZahrani')
+  projects = load_projects_from_db()
+  return render_template("home.html", myskills = projects, myname = 'Huda AlZahrani')
   
   
 if __name__ == "__main__":
