@@ -2,8 +2,6 @@ from flask import Flask, render_template,request
 from database import load_projects_from_db,load_project_from_db,add_massage_to_db
 app = Flask(__name__)
 
-
-
 @app.route("/")
 def hello_world():
   projects = load_projects_from_db()
@@ -18,14 +16,11 @@ def show_project(id):
 def contactpage():
   return render_template('contactus.html')
 
-
-
 @app.route("/massage", methods=['post'])
 def massagepage():
   data = request.form
   add_massage_to_db(data)
   return render_template('massage_submitted.html', massage=data)
-
 
 if __name__ == "__main__":
   print("i'm inside the if")
